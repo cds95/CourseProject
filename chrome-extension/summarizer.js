@@ -1,12 +1,12 @@
 // For simplicity I just copy and pasted this from NLTK's list of stopwords
 var stopWords = ["you'd", 'she', "she's", 'mightn', "that'll", 're', 'those', 'while', 'themselves', "weren't", 'once', 'mustn', 'hasn', 'only', 'needn', 'until', 'into', 'to', 'they', 'off', 'had', 'with', 'll', 'same', "shouldn't", 'just', "you've", 'didn', 'any', 'after', 'ma', 'this', 'were', 'been', 'at', 'most', 'not', 'y', 'against', 'that', 'which', 'my', 'don', 'now', 'our', 'up', 'on', 'such', 'over', 'did', "you're", 'very', 'again', 'or', 'me', 's', 'through', 'will', 'what', 'then', 'an', 'herself', "isn't", "shan't", "couldn't", 'haven', "wasn't", 't', "won't", 'itself', 'and', 'more', "hasn't", 'why', 'both', 'than', 'can', 'hadn', 'shouldn', 'should', "it's", 'yourselves', 'so', 'whom', 'being', "hadn't", 'yourself', 'wouldn', 'm', 'theirs', 'before', 'his', 'has', 'during', 'o', "you'll", 'couldn', 'ourselves', 'was', 'as', 'other', "mustn't", 'about', 'here', 'some', 'between', 'it', 'himself', 'having', 'her', 'are', 'because', 'myself', 'by', 'each', 'from', "aren't", 'weren', 'won', 'own', 'no', 'its', 'd', 'down', "doesn't", 'yours', 'a', 'too', 'for', 'further', 'them', "should've", 'you', 'him', 'out', 'when', 'all', 'doing', "wouldn't", 'aren', 'doesn', 'their', 'be', 'there', 'is', 'he', 'ain', 'shan', "mightn't", 'isn', 'ours', 'but', 'below', 'wasn', 'am', 'where', 'in', "haven't", 'above', 'few', 'who', "needn't", 'i', 'if', "didn't", 'have', 'how', 'your', 've', 'does', 'these', 'we', 'do', 'of', 'hers', 'nor', "don't", 'the', 'under']
 var commonNounAbbr = ["mr", "mrs", "ms", "dr", "prof"]
-var NUM_SENTENCES = 4
 
 document.addEventListener('DOMContentLoaded', function() {
     var checkPageButton = document.getElementById('summarize');
     var textArea = document.getElementById('text-to-analyze')
     var resultSpace = document.getElementById('result')
+    var numSentencesInput = document.getElementById('num-sentences')
 
     function sanitizeWord(word) {
         var charsToIgnore = [",", "'s", "\"", "\n"]
@@ -39,12 +39,12 @@ document.addEventListener('DOMContentLoaded', function() {
             // Handle quotes
             if(char === "\"" && !isInMiddleOfQuote) {
                 isInMiddleOfQuote = true 
+                currSentence += char 
             } else if (isInMiddleOfQuote) {
                 if(char === "\"") {
                     isInMiddleOfQuote = false 
-                } else {
-                    currSentence += char 
-                }
+                } 
+                currSentence += char 
             } else if(endOfSentencePunc.indexOf(char) === -1 && char !== "\n") {
                 currSentence += char 
             } else {
@@ -125,7 +125,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Generate sentences this way so as to preserve order.
         for(var sentence of Object.keys(sentenceScores)) {
-            if(sentences.indexOf(sentence) < NUM_SENTENCES) {
+            var numSentences = numSentencesInput.value
+            if(sentences.indexOf(sentence) < parseInt(numSentences)) {
                 result.push(sentence)
             }
         }
