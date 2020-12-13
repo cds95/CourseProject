@@ -13,4 +13,6 @@ From the root of the project directory.
 
 
 ### Chrome Extension
+Refer to the demo to see how to run the extension.
+
 Link to demo: https://www.youtube.com/watch?v=PoMi_EibtCs
