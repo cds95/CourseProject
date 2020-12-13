@@ -1,3 +1,16 @@
 # CourseProject
 
-Please fork this repository and paste the github link of your fork on Microsoft CMT. Detailed instructions are on Coursera under Week 1: Course Project Overview/Week 9 Activities.
+## Running the project
+
+### Jupyter Notebook Exploration
+
+1) Install Jupyter Notebook by following instructions here https://jupyter.org/install.
+
+From the root of the project directory.
+
+2) `cd exploration`
+3) `jupyter-notebook`
+
+
+### Chrome Extension
+Link to demo: https://www.youtube.com/watch?v=PoMi_EibtCs
