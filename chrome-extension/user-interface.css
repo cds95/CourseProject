@@ -9,7 +9,9 @@ body {
 
 #num-sentences {
   margin-top: 25px;
-  width: 300px;
+  width: 400px;
+  height: 30px;
+  border-radius: 5px;
 }
 
 #text-to-analyze {
